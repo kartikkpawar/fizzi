@@ -6,11 +6,13 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { View } from "@react-three/drei";
+import Scene from "./Scene";
+import { Bubbles } from "@/components/Bubbles";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export default function Hero() { 
-  
+export default function Hero() {
   useGSAP(() => {
     const introTl = gsap.timeline();
     introTl
@@ -28,7 +30,7 @@ export default function Hero() {
           opacity: 0,
           y: 30,
         },
-        "+=.8", // equivalent to `delay:0.8`
+        "+=.8" // equivalent to `delay:0.8`
       )
       .from(".hero-body", {
         opacity: 0,
@@ -46,7 +48,7 @@ export default function Hero() {
         start: "top top", // Starts when the top of the element hits the top of the viewport
         end: "bottom bottom", // Ends when the bottom of the element hits the bottom of the viewport
         scrub: 1.5, // Smoothly animates the element as you scroll\
-        markers: true, // Adds markers to the scrollbar
+        // markers: true, // Adds markers to the scrollbar
       },
     });
 
@@ -55,7 +57,7 @@ export default function Hero() {
         "body",
         { backgroundColor: "#FDE047" },
         { backgroundColor: "#D9F99D", overrite: "auto" },
-        1,
+        1
       )
       .from(".text-side-heading .split-char", {
         scale: 1.3,
@@ -76,46 +78,55 @@ export default function Hero() {
     <Bounded
       className="hero opacity-0" // Set the initial opacity to 0 and animate it to 1 using gsap
     >
+      <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
+        <Scene />
+        <Bubbles />
+      </View>
       <div className="grid">
         <div className="grid h-screen place-items-center">
           <div className="grid auto-rows-min place-items-center text-center">
             <h1 className="hero-header text-7xl font-bold uppercase leading-[0.8] text-orange-500 md:text-[9rem] lg:text-[13rem]">
               <TextSplitter
-                text={'Live Gutsy'}
+                text={"Live Gutsy"}
                 wordDisplayStyle="block"
                 className="hero-header-word"
               />
             </h1>
             <div className="hero-subheading mt-12 text-5xl font-semibold text-sky-950 lg:text-6xl">
-           <h2> Soda Perfected</h2>
+              <h2> Soda Perfected</h2>
             </div>
             <div className="hero-body text-2xl font-normal text-sky-900">
-           <p> 3-5g sugar. 9g fiber. 5 delicious flavors.</p>
+              <p> 3-5g sugar. 9g fiber. 5 delicious flavors.</p>
             </div>
             <Button
-              buttonLink={'https://kartikpawar.dev/'}
-              buttonText={'Shop Now'}
+              buttonLink={"https://kartikpawar.dev/"}
+              buttonText={"Shop Now"}
               className="hero-button mt-12"
             />
           </div>
         </div>
         <div className="text-side relative z-[80] grid h-screen items-center gap-4 md:grid-cols-2">
           <Image
-            src={'/assets/all-cans-bunched.png'}
+            src={"/assets/all-cans-bunched.png"}
             alt="All flavours"
             className="w-full md:hidden"
-            width={300} height={300} />
+            width={300}
+            height={300}
+          />
           <div>
             <h2 className="text-side-heading text-balance text-6xl font-black text-sky-950 lg:text-8xl">
-              <TextSplitter text={'Try all five flavours'} />
+              <TextSplitter text={"Try all five flavours"} />
             </h2>
             <div className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-sky-950">
-             <p>Our soda is made with real fruit juice and a touch of cane sugar. We never use artificial sweeteners or high fructose corn syrup. Try all five flavors and find your favorite!</p>
+              <p>
+                Our soda is made with real fruit juice and a touch of cane
+                sugar. We never use artificial sweeteners or high fructose corn
+                syrup. Try all five flavors and find your favorite!
+              </p>
             </div>
           </div>
         </div>
       </div>
     </Bounded>
   );
-
 }

@@ -1,4 +1,4 @@
-import Hero from '@/components/sections/Hero'
+import Hero from '@/app/__components/Hero/Hero'
 import React, { Fragment } from 'react'
 
 function HomePage() {

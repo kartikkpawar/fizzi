@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import ViewCanvas from "@/components/ViewCanvas";
 
 const alpino = localFont({
   src: "./fonts/Alpino-Variable.woff2",
@@ -24,7 +25,11 @@ export default function RootLayout({
     <html lang="en" className={alpino.variable} suppressHydrationWarning>
       <body className="overflow-x-hidden bg-yellow-300">
         <Header />
-        {children}</body>
+        <main>
+          {children}
+          <ViewCanvas />
+        </main>
+      </body>
     </html>
   );
 }
