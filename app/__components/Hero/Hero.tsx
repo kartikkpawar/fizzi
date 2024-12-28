@@ -9,70 +9,78 @@ import Image from "next/image";
 import { View } from "@react-three/drei";
 import Scene from "./Scene";
 import { Bubbles } from "@/components/Bubbles";
+import { useStore } from "@/app/hooks/useStore";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Hero() {
-  useGSAP(() => {
-    const introTl = gsap.timeline();
-    introTl
-      .set(".hero", { opacity: 1 })
-      .from(".hero-header-word", {
-        scale: 3,
-        opacity: 0,
-        ease: "power4.in",
-        delay: 0.3,
-        stagger: 1,
-      })
-      .from(
-        ".hero-subheading",
-        {
+  const ready = useStore((state) => state.ready);
+
+  useGSAP(
+    () => {
+      if (!ready) return;
+
+      const introTl = gsap.timeline();
+      introTl
+        .set(".hero", { opacity: 1 })
+        .from(".hero-header-word", {
+          scale: 3,
           opacity: 0,
-          y: 30,
+          ease: "power4.in",
+          delay: 0.3,
+          stagger: 1,
+        })
+        .from(
+          ".hero-subheading",
+          {
+            opacity: 0,
+            y: 30,
+          },
+          "+=.8" // equivalent to `delay:0.8`
+        )
+        .from(".hero-body", {
+          opacity: 0,
+          y: 10,
+        })
+        .from(".hero-button", {
+          opacity: 0,
+          y: 10,
+          duration: 0.6,
+        });
+
+      const scrollTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top", // Starts when the top of the element hits the top of the viewport
+          end: "bottom bottom", // Ends when the bottom of the element hits the bottom of the viewport
+          scrub: 1.5, // Smoothly animates the element as you scroll\
+          // markers: true, // Adds markers to the scrollbar
         },
-        "+=.8" // equivalent to `delay:0.8`
-      )
-      .from(".hero-body", {
-        opacity: 0,
-        y: 10,
-      })
-      .from(".hero-button", {
-        opacity: 0,
-        y: 10,
-        duration: 0.6,
       });
 
-    const scrollTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".hero",
-        start: "top top", // Starts when the top of the element hits the top of the viewport
-        end: "bottom bottom", // Ends when the bottom of the element hits the bottom of the viewport
-        scrub: 1.5, // Smoothly animates the element as you scroll\
-        // markers: true, // Adds markers to the scrollbar
-      },
-    });
-
-    scrollTl
-      .fromTo(
-        "body",
-        { backgroundColor: "#FDE047" },
-        { backgroundColor: "#D9F99D", overrite: "auto" },
-        1
-      )
-      .from(".text-side-heading .split-char", {
-        scale: 1.3,
-        y: 40,
-        rotate: -25,
-        opacity: 0,
-        stagger: 0.1,
-        ease: "back.out(3)",
-        duration: 0.5,
-      })
-      .from(".text-side-body", {
-        y: 20,
-        opacity: 0,
-      });
-  });
+      scrollTl
+        .fromTo(
+          "body",
+          { backgroundColor: "#FDE047" },
+          { backgroundColor: "#D9F99D", overrite: "auto" },
+          1
+        )
+        .from(".text-side-heading .split-char", {
+          scale: 1.3,
+          y: 40,
+          rotate: -25,
+          opacity: 0,
+          stagger: 0.1,
+          ease: "back.out(3)",
+          duration: 0.5,
+        })
+        .from(".text-side-body", {
+          y: 20,
+          opacity: 0,
+        });
+    },
+    { dependencies: [ready] }
+  );
 
   return (
     <Bounded
