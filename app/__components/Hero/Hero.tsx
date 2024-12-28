@@ -10,15 +10,17 @@ import { View } from "@react-three/drei";
 import Scene from "./Scene";
 import { Bubbles } from "@/components/Bubbles";
 import { useStore } from "@/app/hooks/useStore";
+import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Hero() {
   const ready = useStore((state) => state.ready);
+  const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
   useGSAP(
     () => {
-      if (!ready) return;
+      if (!ready && isDesktop) return;
 
       const introTl = gsap.timeline();
       introTl
@@ -79,17 +81,19 @@ export default function Hero() {
           opacity: 0,
         });
     },
-    { dependencies: [ready] }
+    { dependencies: [ready, isDesktop] }
   );
 
   return (
     <Bounded
       className="hero opacity-0" // Set the initial opacity to 0 and animate it to 1 using gsap
     >
-      <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
-        <Scene />
-        <Bubbles count={300} speed={2} />
-      </View>
+      {isDesktop && (
+        <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
+          <Scene />
+          <Bubbles count={300} speed={2} />
+        </View>
+      )}
       <div className="grid">
         <div className="grid h-screen place-items-center">
           <div className="grid auto-rows-min place-items-center text-center">
