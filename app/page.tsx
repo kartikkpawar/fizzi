@@ -1,10 +1,12 @@
-import Hero from '@/app/__components/Hero/Hero'
+import Hero from '@/app/__components/Hero'
 import React, { Fragment } from 'react'
+import SkyDive from './__components/SkyDive'
 
 function HomePage() {
   return (
     <Fragment>
-      <Hero/>
+      <Hero />
+      <SkyDive/>
     </Fragment>
   )
 }
