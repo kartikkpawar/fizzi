@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 3D Website Showcase
 
-## Getting Started
+A visually stunning 3D website built to demonstrate interactive and immersive web experiences. This project highlights smooth animations, responsive design, and cutting-edge 3D graphics.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🌟 Smooth animations and transitions
+- 🌐 Fully responsive design
+- 🚀 Live demo available at [Live Link](https://fizzi.kartikpawar.dev/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screenshots
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ScreenShot 1
+![Screenshot 1](https://github.com/user-attachments/assets/e4efa3fd-9b79-4529-955a-497aea965ed5)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### ScreenShot 2
+![Screenshot 2](https://github.com/user-attachments/assets/9d2d4adc-d42d-4654-be4a-9d1b87db2721)
 
-## Learn More
+## Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+- [Three.js](https://threejs.org/) for 3D graphics
+- [NextJs](https://nextjs.org/) for UI development
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [GSAP](https://gsap.com/) for animations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
